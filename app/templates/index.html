@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}课堂动力{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>请登陆</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
