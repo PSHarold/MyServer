@@ -1,8 +1,8 @@
 import flask
 import random, string
 from config import Config
-from flask.ext.moment import Moment
-from flask.ext.mail import Mail, Message
+from flask_moment import Moment
+from flask_mail import Mail, Message
 config = Config()
 
 from flask_bootstrap import Bootstrap

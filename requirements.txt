@@ -1,0 +1,8 @@
+flask
+mongoengine
+enum34
+pillow
+flask-mail
+flask-bootstrap
+flask-wtf
+flask-moment

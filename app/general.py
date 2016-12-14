@@ -26,10 +26,10 @@ def validate_qr_code(code):
 
 import os
 
-HOME = os.path.expanduser('~')
-FACE_FOLDER = HOME + "/FACES/"
-AVATAR_FOLDER = HOME + "/AVATARS/"
-COVER_FOLDER = HOME + "/COVERS/"
+#HOME = os.path.expanduser('~')
+FACE_FOLDER = "./FACES/"
+AVATAR_FOLDER = "./AVATARS/"
+COVER_FOLDER = "./COVERS/"
 
 
 # @scheduler.scheduled_job('interval', seconds=5)
