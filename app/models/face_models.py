@@ -99,6 +99,8 @@ class Face(Document):
             return api.recognition.verify(face_id=face_id, person_name=self.student_id)['is_same_person']
         except APIError, e:
             print e.body
+            if e.error_code == 1005:
+                return Error.NO_FACE_UPLOADED
             return Error.FACE_API_ERROR
         except IndexError:
             return Error.IMAGE_CONTAINS_NO_FACE

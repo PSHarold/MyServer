@@ -7,7 +7,7 @@ import string
 
 # 错误类型枚举
 class Error(Enum):
-    #UNKNOWN_INTERNAL_ERROR = 500
+    # UNKNOWN_INTERNAL_ERROR = 500
 
     FACE_API_ERROR = 600
     FORBIDDEN = 601  # 无权限
@@ -44,6 +44,7 @@ class Error(Enum):
     CLASS_NOT_FOUND = 713
     CHAPTER_NOT_FOUND = 714
     SECTION_NOT_FOUND = 715
+    NO_FACE_UPLOADED = 716
 
     RESOURCE_ALREADY_EXISTS = 800
     USER_ALREADY_EXISTS = 801  # POST to register 用户已存在
@@ -57,7 +58,6 @@ class Error(Enum):
     ROOM_ALREADY_EXISTS = 809
     CHAPTER_ALREADY_EXISTS = 814
     SECTION_ALREADY_EXISTS = 815
-
 
     COURSE_IS_NOT_ON_THE_GIVEN_TIME = 950
     ASK_FOR_LEAVE_HAS_BEEN_APPROVED = 951
@@ -137,6 +137,7 @@ def error404(e):
 @main.app_errorhandler(405)
 def error405(e):
     return make_response(jsonify({'error_msg': 'Method Not Allowed', 'error_code': 405}), 405)
+
 
 @main.app_errorhandler(500)
 def error500(e):

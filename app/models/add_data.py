@@ -107,26 +107,33 @@ def crop_avatars():
 def choose_seat(course_id):
     from random import sample, shuffle
     course = Course.objects.get(pk=course_id)
-    students = course.students
-    time = course.times[0]
-    room_id = time.room_id
-    seats = Seat.objects(room_id=room_id)
-    for seat in seats:
+    for a in AttendanceList.objects:
+        a.delete()
+        a.save()
+    for seat in Seat.objects:
         seat.students = {}
         seat.save()
+    l = 25
+    students = sample(course.students, l)
+    for time in course.times:
+        room_id = time.room_id
+        seats = Seat.objects(room_id=room_id)
+        for seat in seats:
+            seat.students = {}
+            seat.save()
 
-    selected_seats = sample(seats, len(students))
-    shuffle(selected_seats)
-
-
-    for period_num in range(2, 9):
-        for week in time.weeks:
-            for day in time.days:
-                attendance_list = course.get_attendance_list(week_no=week, day_no=day, period_no=period_num)
-                for student, seat in zip(students, selected_seats):
-                    attendance_list.check_in(student_id=student.user_id, row_num=seat.row, col_num=seat.col)
-                    seat.modify({'students__' + str(period_num) + '__in': [None, '']},
-                        **{'students__' + str(period_num): student.user_id, 'late_secs__' + str(period_num): 0})
+        selected_seats = sample(seats, l)
+        shuffle(selected_seats)
 
 
-#choose_seat("00000000_0001")
+        for period_num in range(2, 6):
+            for week in time.weeks:
+                for day in time.days:
+                    attendance_list = course.get_attendance_list(week_no=week, day_no=day, period_no=period_num)
+                    for student, seat in zip(students, selected_seats):
+                        attendance_list.check_in(student_id=student.user_id, row_num=seat.row, col_num=seat.col)
+                        seat.modify({'students__' + str(period_num) + '__in': [None, '']},
+                            **{'students__' + str(period_num): student.user_id, 'late_secs__' + str(period_num): 0})
+
+
+choose_seat("00000000_0001")

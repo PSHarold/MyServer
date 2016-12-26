@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from . import *
 
-CURRENT_WEEK_NO = 15
-CURRENT_DAY_NO = 5
+CURRENT_WEEK_NO = 16
+CURRENT_DAY_NO = 1
 
 
 
